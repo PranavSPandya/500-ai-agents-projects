@@ -105,22 +105,71 @@
       </div>
     </section>
 
-    <section class="gallery">
-      <h2 class="gallery-title">Leonida Preview</h2>
+    <section class="sneak-peeks" aria-label="Official sneak peeks from Rockstar and social media">
+      <h2 class="section-title">Sneak Peeks</h2>
+      <p class="section-sub">Official drops from Rockstar, YouTube, X, Netflix &amp; more — shuffled live</p>
+      <div class="peek-carousel">
+        <button class="peek-nav peek-prev" id="peek-prev" aria-label="Previous sneak peek">‹</button>
+        <div class="peek-card-wrap">
+          <div class="peek-card" id="peek-card"></div>
+          <div class="peek-controls">
+            <span class="peek-counter" id="peek-counter">1 / 10</span>
+            <div class="peek-dots" id="peek-dots"></div>
+            <button class="peek-shuffle-btn" id="peek-shuffle" title="Shuffle order">🔀 Shuffle</button>
+          </div>
+        </div>
+        <button class="peek-nav peek-next" id="peek-next" aria-label="Next sneak peek">›</button>
+      </div>
+    </section>
+
+    <section class="game-modes" aria-label="GTA VI game modes and editions">
+      <h2 class="section-title">Game Modes &amp; Editions</h2>
+      <p class="section-sub">Everything Rockstar has confirmed — and what's still under wraps</p>
+      <div class="modes-grid" id="modes-grid"></div>
+    </section>
+
+    <section class="gallery gallery-static" aria-label="Leonida preview artwork">
+      <h2 class="section-title">Leonida Preview</h2>
+      <p class="section-sub">Atmospheric artwork · display only</p>
       <div class="gallery-grid">
         <figure class="gallery-item">
-          <img src="assets/Miamis-synth-files/Previews/Miami-synth.png" alt="Miami synthwave cityscape at sunset" loading="lazy" />
+          <img src="assets/Miamis-synth-files/Previews/Miami-synth.png" alt="Miami synthwave cityscape at sunset" loading="lazy" draggable="false" />
           <figcaption>Vice City skyline</figcaption>
         </figure>
         <figure class="gallery-item">
-          <img src="assets/Miamis-synth-files/Previews/Miami-synthx3.png" alt="Expanded Miami synthwave panorama" loading="lazy" />
+          <img src="assets/Miamis-synth-files/Previews/Miami-synthx3.png" alt="Expanded Miami synthwave panorama" loading="lazy" draggable="false" />
           <figcaption>Leonida highway</figcaption>
         </figure>
         <figure class="gallery-item">
-          <img src="assets/sunset-city.jpg" alt="Palm trees silhouetted against a tropical sunset" loading="lazy" />
+          <img src="assets/sunset-city.jpg" alt="Palm trees silhouetted against a tropical sunset" loading="lazy" draggable="false" />
           <figcaption>Tropical dusk</figcaption>
         </figure>
       </div>
+    </section>
+
+    <section class="widget-section" aria-label="Embed countdown widget">
+      <h2 class="section-title">Embed Widget</h2>
+      <p class="section-sub">Add the GTA VI countdown to your blog, stream overlay, or fansite</p>
+      <div class="widget-demo">
+        <div id="widget-preview"></div>
+      </div>
+      <div class="embed-options">
+        <div class="embed-block">
+          <div class="embed-header">
+            <span>Iframe embed</span>
+            <button class="copy-btn" data-copy="embed-iframe-code">Copy</button>
+          </div>
+          <pre class="embed-code" id="embed-iframe-code"></pre>
+        </div>
+        <div class="embed-block">
+          <div class="embed-header">
+            <span>Script embed</span>
+            <button class="copy-btn" data-copy="embed-script-code">Copy</button>
+          </div>
+          <pre class="embed-code" id="embed-script-code"></pre>
+        </div>
+      </div>
+      <p class="widget-note">Replace the URL with your hosted copy of this app. Widget is 340×160px and updates in real time.</p>
     </section>
 
     <footer class="footer">
@@ -136,6 +185,10 @@
     <span class="wasted-text">IT'S HERE</span>
   </div>
 
+  <script src="js/content-data.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/sneak-peeks.js"></script>
+  <script src="js/game-modes.js"></script>
+  <script src="js/widget-embed.js"></script>
 </body>
 </html>
