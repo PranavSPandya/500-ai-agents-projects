@@ -7,3 +7,4 @@ source/
 swapped_keys/
 base_frames/
 faces/
+dist/*_raw.mp4
