@@ -1,0 +1,10 @@
+out/
+__pycache__/
+*.pyc
+frames/
+models/
+source/
+swapped_keys/
+base_frames/
+faces/
+dist/*_raw.mp4
