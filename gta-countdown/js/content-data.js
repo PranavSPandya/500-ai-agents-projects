@@ -1,132 +1,163 @@
-/* Official GTA VI sneak peeks & confirmed game info — links to Rockstar/social posts */
+/* Official GTA VI sneak peeks — fixed display order (pre-order → snapshots → follow → rest) */
 
 const SNEAK_PEEKS = [
+  /* ── 1. Pre-order ── */
   {
-    title: "Grand Theft Auto VI: An Extended Look",
+    title: "Pre-Orders Now Open",
     description:
-      "Rockstar confirms a first-of-its-kind Netflix premiere on August 27 — extended footage hits YouTube and rockstargames.com/VI later the same day.",
-    platform: "Netflix",
-    url: "https://www.netflix.com/title/81761351",
-    thumbnail: "https://img.youtube.com/vi/VQRLujxTm3c/maxresdefault.jpg",
-    date: "August 6, 2026",
-    source: "Rockstar Games × Netflix",
+      "Standard Edition ($79.99) and Ultimate Edition ($99.99) are live. Vintage Vice City Pack included for purchases before Nov 20, 2026. Pre-load starts Nov 12.",
+    platform: "Newswire",
+    url: "https://www.rockstargames.com/VI",
+    thumbnail: null,
+    platformColor: "#fcaf17",
+    date: "June 25, 2026",
+    source: "Rockstar Games",
+    category: "preorder",
   },
   {
     title: "Official Cover Art Revealed",
     description:
-      "Rockstar unveils the GTA VI box art starring Jason & Lucia, confirms pre-orders begin June 25 and locks the November 19, 2026 release date.",
+      "Rockstar unveils the GTA VI box art starring Jason & Lucia and confirms pre-orders begin June 25 with the November 19, 2026 release locked in.",
     platform: "X (Twitter)",
     url: "https://x.com/rockstargames/status/2067594067030979053",
     thumbnail: null,
     platformColor: "#1da1f2",
     date: "June 18, 2026",
     source: "@rockstargames",
+    category: "preorder",
   },
   {
-    title: "Pre-Orders Now Open",
+    title: "Take-Two Confirms Launch Details",
     description:
-      "Standard Edition ($79.99) and Ultimate Edition ($99.99) go live. Includes Vintage Vice City Pack for purchases before Nov 20, 2026.",
-    platform: "Newswire",
-    url: "https://www.rockstargames.com/newswire",
-    thumbnail: null,
-    platformColor: "#fcaf17",
-    date: "June 25, 2026",
-    source: "Rockstar Games",
-  },
-  {
-    title: "Grand Theft Auto VI Trailer 2",
-    description:
-      '"Vice City, baby!" — Jason & Lucia navigate robberies, police chases, and life on the run across Leonida. Over 200M views.',
-    platform: "YouTube",
-    url: "https://www.youtube.com/watch?v=VQRLujxTm3c",
-    thumbnail: "https://img.youtube.com/vi/VQRLujxTm3c/maxresdefault.jpg",
-    date: "May 6, 2025",
-    source: "Rockstar Games",
-  },
-  {
-    title: "Trailer Leaked — Watch the Real Thing",
-    description:
-      'After an early leak, Rockstar posted: "Our trailer has leaked so please watch the real thing on YouTube." The internet obliged — 90M+ views in 24 hours.',
-    platform: "X (Twitter)",
-    url: "https://x.com/rockstargames/status/1731675005342486737",
-    thumbnail: "https://img.youtube.com/vi/QdBZY2fkU-0/maxresdefault.jpg",
-    date: "December 4, 2023",
-    source: "@rockstargames",
-  },
-  {
-    title: "Grand Theft Auto VI Trailer 1",
-    description:
-      "First official look at Vice City and the state of Leonida. Lucia on parole, Jason by her side — the Bonnie & Clyde of the 2020s.",
-    platform: "YouTube",
-    url: "https://www.youtube.com/watch?v=QdBZY2fkU-0",
-    thumbnail: "https://img.youtube.com/vi/QdBZY2fkU-0/maxresdefault.jpg",
-    date: "December 4, 2023",
-    source: "Rockstar Games",
-  },
-  {
-    title: "New Screenshots Drop",
-    description:
-      "Rockstar releases a batch of in-engine screenshots teasing wildlife, interiors, vehicles, and the scale of Leonida ahead of launch.",
-    platform: "Website",
-    url: "https://www.rockstargames.com/VI",
-    thumbnail: "https://img.youtube.com/vi/VQRLujxTm3c/hqdefault.jpg",
-    date: "June 2026",
-    source: "rockstargames.com/VI",
-  },
-  {
-    title: "Take-Two Earnings Call — Nov 19 Locked",
-    description:
-      "CEO Strauss Zelnick reaffirms GTA VI ships November 19, 2026 on PS5 & Xbox Series X|S. Marketing campaign kicks off summer 2026.",
+      "CEO Strauss Zelnick reaffirms GTA VI ships November 19, 2026 on PS5 & Xbox Series X|S. Single-player experience at $79.99 standard.",
     platform: "Press Release",
     url: "https://taketwointeractivesoftwareinc.gcs-web.com/news-releases/news-release-details/rockstar-games-announces-pre-orders-grand-theft-auto-vi",
     thumbnail: null,
     platformColor: "#e31937",
     date: "June 2026",
     source: "Take-Two Interactive",
+    category: "preorder",
+  },
+
+  /* ── 2. Snapshots & official media ── */
+  {
+    title: "New Screenshots Drop",
+    description:
+      "Rockstar releases in-engine screenshots teasing wildlife, interiors, vehicles, and the scale of Leonida ahead of launch.",
+    platform: "Website",
+    url: "https://www.rockstargames.com/VI",
+    thumbnail: "https://img.youtube.com/vi/VQRLujxTm3c/hqdefault.jpg",
+    date: "June 2026",
+    source: "rockstargames.com/VI",
+    category: "snapshots",
   },
   {
-    title: "Extended Look — YouTube & Website Too",
+    title: "Grand Theft Auto VI Trailer 2",
     description:
-      "Rockstar confirms the same Extended Look hits the official YouTube channel and rockstargames.com/VI at 9 PM ET — six hours after the Netflix premiere.",
-    platform: "X (Twitter)",
-    url: "https://x.com/rockstargames",
-    thumbnail: null,
-    platformColor: "#1da1f2",
-    date: "August 6, 2026",
-    source: "@rockstargames",
-  },
-  {
-    title: "Rockstar on Facebook",
-    description:
-      "Official announcements, trailer drops, and community updates post to Rockstar's Facebook page alongside every major marketing beat.",
-    platform: "Facebook",
-    url: "https://www.facebook.com/rockstargames",
-    thumbnail: null,
-    platformColor: "#1877f2",
-    date: "Ongoing",
+      '"Vice City, baby!" — Jason & Lucia navigate robberies, police chases, and life on the run across Leonida.',
+    platform: "YouTube",
+    url: "https://www.youtube.com/watch?v=VQRLujxTm3c",
+    thumbnail: "https://img.youtube.com/vi/VQRLujxTm3c/maxresdefault.jpg",
+    date: "May 6, 2025",
     source: "Rockstar Games",
+    category: "snapshots",
   },
+  {
+    title: "Grand Theft Auto VI Trailer 1",
+    description:
+      "First official look at Vice City and Leonida. Lucia on parole, Jason by her side — the Bonnie & Clyde of the 2020s.",
+    platform: "YouTube",
+    url: "https://www.youtube.com/watch?v=QdBZY2fkU-0",
+    thumbnail: "https://img.youtube.com/vi/QdBZY2fkU-0/maxresdefault.jpg",
+    date: "December 4, 2023",
+    source: "Rockstar Games",
+    category: "snapshots",
+  },
+  {
+    title: "Grand Theft Auto VI: An Extended Look",
+    description:
+      "Netflix premiere August 27 at 3 PM ET — then YouTube and rockstargames.com/VI at 9 PM ET the same day.",
+    platform: "Netflix",
+    url: "https://www.netflix.com/title/81761351",
+    thumbnail: "https://img.youtube.com/vi/VQRLujxTm3c/maxresdefault.jpg",
+    date: "August 6, 2026",
+    source: "Rockstar Games × Netflix",
+    category: "snapshots",
+  },
+  {
+    title: "Trailer Leaked — Watch the Real Thing",
+    description:
+      'Rockstar posted: "Our trailer has leaked so please watch the real thing on YouTube." 90M+ views in 24 hours.',
+    platform: "X (Twitter)",
+    url: "https://x.com/rockstargames/status/1731675005342486737",
+    thumbnail: "https://img.youtube.com/vi/QdBZY2fkU-0/maxresdefault.jpg",
+    date: "December 4, 2023",
+    source: "@rockstargames",
+    category: "snapshots",
+  },
+
+  /* ── 3. Follow official pages ── */
   {
     title: "Follow Rockstar on Instagram",
     description:
-      "Behind-the-scenes art, character spotlights, and marketing drops land on Rockstar's official Instagram before every major beat.",
+      "Behind-the-scenes art, character spotlights, and marketing drops land here before every major beat.",
     platform: "Instagram",
     url: "https://www.instagram.com/rockstargames/",
     thumbnail: null,
     platformColor: "#e1306c",
     date: "Ongoing",
     source: "@rockstargames",
+    category: "follow",
   },
   {
-    title: "Netflix × GTA VI Partnership",
+    title: "Follow Rockstar on X",
     description:
-      '"Grand Theft Auto VI: An Extended Look" streams exclusively on Netflix Aug 27 at 3 PM ET — a new frontier for game marketing.',
-    platform: "Netflix",
-    url: "https://www.netflix.com/title/81761351",
+      "Trailers, release updates, and breaking news drop on Rockstar's official X account first.",
+    platform: "X (Twitter)",
+    url: "https://x.com/rockstargames",
     thumbnail: null,
-    platformColor: "#e50914",
-    date: "August 27, 2026",
-    source: "Netflix",
+    platformColor: "#1da1f2",
+    date: "Ongoing",
+    source: "@rockstargames",
+    category: "follow",
+  },
+  {
+    title: "Rockstar on Facebook",
+    description:
+      "Official announcements, trailer drops, and community updates on Rockstar's Facebook page.",
+    platform: "Facebook",
+    url: "https://www.facebook.com/rockstargames",
+    thumbnail: null,
+    platformColor: "#1877f2",
+    date: "Ongoing",
+    source: "Rockstar Games",
+    category: "follow",
+  },
+  {
+    title: "Rockstar Games YouTube",
+    description:
+      "Both official trailers premiered here. Subscribe for the Extended Look and any future drops.",
+    platform: "YouTube",
+    url: "https://www.youtube.com/rockstargames",
+    thumbnail: null,
+    platformColor: "#ff0000",
+    date: "Ongoing",
+    source: "Rockstar Games",
+    category: "follow",
+  },
+
+  /* ── 4. Everything else ── */
+  {
+    title: "Extended Look — YouTube & Website",
+    description:
+      "Same Extended Look hits Rockstar's YouTube channel and rockstargames.com/VI at 9 PM ET — six hours after Netflix.",
+    platform: "X (Twitter)",
+    url: "https://x.com/rockstargames",
+    thumbnail: null,
+    platformColor: "#1da1f2",
+    date: "August 6, 2026",
+    source: "@rockstargames",
+    category: "other",
   },
 ];
 
@@ -181,8 +212,40 @@ const GAME_MODES = [
     name: "GTA Online",
     tag: "Post-Launch TBD",
     description:
-      "Rockstar has not confirmed a GTA Online mode for launch. A Leonida-based online world is widely expected to follow, as with GTA V.",
+      "Rockstar has not confirmed a GTA Online mode for launch. A Leonida-based online world is widely expected to follow.",
     details: ["Not at Nov 19 launch", "GTA+ includes GTA V Online", "Future updates likely"],
     confirmed: false,
+  },
+];
+
+/* Pre-order store links — set affiliate IDs in js/affiliate-config.js */
+const PREORDER_STORES = [
+  {
+    name: "PlayStation Store",
+    platform: "PS5",
+    url: "https://store.playstation.com/",
+    icon: "🎮",
+    note: "Standard & Ultimate Edition",
+  },
+  {
+    name: "Xbox Store",
+    platform: "Xbox Series X|S",
+    url: "https://www.xbox.com/games/store",
+    icon: "🟢",
+    note: "Standard & Ultimate Edition",
+  },
+  {
+    name: "Rockstar Store",
+    platform: "Official",
+    url: "https://www.rockstargames.com/VI",
+    icon: "⭐",
+    note: "Official pre-order hub",
+  },
+  {
+    name: "Amazon",
+    platform: "Physical",
+    url: "https://www.amazon.com/s?k=grand+theft+auto+vi",
+    icon: "📦",
+    note: "Physical box (download code inside)",
   },
 ];

@@ -163,22 +163,278 @@ body {
   80% { background-image: url("../assets/Miamis-synth-files/sprites/running/car-running5.png"); }
 }
 
-/* ── Main content ── */
-.content {
+/* ── App shell (mobile-first) ── */
+.app-shell {
   position: relative;
   z-index: 10;
-  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 1rem 1rem;
+  padding-top: env(safe-area-inset-top);
+}
+
+.app-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  animation: screenIn 0.25s ease;
+}
+
+.app-screen.active {
+  display: flex;
+}
+
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.screen-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 0.15em;
+  color: var(--neon-pink);
+  text-shadow: 0 0 12px var(--neon-pink);
+  text-align: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.screen-sub {
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+/* ── Bottom tab navigation ── */
+.app-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  background: rgba(10, 0, 20, 0.95);
+  border-top: 1px solid rgba(255, 45, 149, 0.35);
+  backdrop-filter: blur(12px);
+  padding-bottom: env(safe-area-inset-bottom);
+  max-width: 480px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.app-tab {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem 4rem;
+  justify-content: center;
+  gap: 2px;
+  padding: 0.5rem 0.25rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: color 0.2s;
+  min-height: 56px;
+}
+
+.app-tab.active {
+  color: var(--neon-cyan);
+}
+
+.app-tab.active .tab-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px var(--neon-cyan));
+}
+
+.tab-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.tab-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Install hint ── */
+.install-hint {
+  position: fixed;
+  top: env(safe-area-inset-top, 0);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - 2rem);
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  backdrop-filter: blur(8px);
+}
+
+.install-hint[hidden] {
+  display: none;
+}
+
+.install-hint button {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* ── Home CTA ── */
+.home-cta {
+  width: 100%;
+  max-width: 320px;
+  margin: 1rem auto 0;
+  padding: 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 45, 149, 0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.home-cta:active {
+  transform: scale(0.97);
+}
+
+/* ── Pre-order screen ── */
+.preorder-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.preorder-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--glass);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(8px);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.preorder-card:active {
+  transform: scale(0.98);
+  border-color: var(--neon-cyan);
+}
+
+.preorder-icon {
+  font-size: 1.75rem;
+}
+
+.preorder-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.preorder-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+
+.preorder-platform {
+  font-size: 0.75rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.preorder-note {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.preorder-arrow {
+  font-size: 1.25rem;
+  color: var(--neon-pink);
+}
+
+.preorder-bonus {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 12px;
+}
+
+.preorder-bonus h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.preorder-bonus p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.affiliate-disclaimer {
+  width: 100%;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.swipe-hint {
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.08em;
+  margin-top: 0.75rem;
 }
 
 /* ── Hero title ── */
 .hero {
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2.5rem;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .tagline {
@@ -254,9 +510,8 @@ body {
 /* ── Countdown ── */
 .countdown {
   width: 100%;
-  max-width: 900px;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .countdown-grid {
@@ -351,12 +606,10 @@ body {
 /* ── Stats ── */
 .stats {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   width: 100%;
-  max-width: 700px;
 }
 
 .stat-card {
@@ -422,8 +675,6 @@ body {
 /* ── Sneak Peeks carousel ── */
 .sneak-peeks {
   width: 100%;
-  max-width: 900px;
-  margin-bottom: 3rem;
 }
 
 .peek-carousel {
@@ -655,14 +906,12 @@ body {
 /* ── Game modes ── */
 .game-modes {
   width: 100%;
-  max-width: 1000px;
-  margin-bottom: 3rem;
 }
 
 .modes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .mode-card {
@@ -761,90 +1010,10 @@ body {
   border: 1px solid rgba(255, 107, 53, 0.3);
 }
 
-/* ── Widget embed ── */
-.widget-section {
-  width: 100%;
-  max-width: 700px;
-  margin-bottom: 3rem;
-}
-
-.widget-demo {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  border: 1px dashed rgba(255, 45, 149, 0.3);
-}
-
-.embed-options {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.embed-block {
-  background: var(--glass);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.embed-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.6rem 1rem;
-  background: rgba(0, 0, 0, 0.3);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.copy-btn {
-  background: transparent;
-  border: 1px solid var(--neon-pink);
-  color: var(--neon-pink);
-  font-size: 0.7rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  cursor: pointer;
-  letter-spacing: 0.05em;
-  transition: background 0.2s;
-}
-
-.copy-btn:hover {
-  background: rgba(255, 45, 149, 0.15);
-}
-
-.embed-code {
-  padding: 1rem;
-  font-family: "Courier New", monospace;
-  font-size: 0.7rem;
-  line-height: 1.5;
-  color: var(--neon-cyan);
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-all;
-  margin: 0;
-}
-
-.widget-note {
-  margin-top: 1rem;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.35);
-  text-align: center;
-  line-height: 1.6;
-}
-
 /* ── Gallery ── */
 .gallery {
   width: 100%;
-  max-width: 1000px;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .gallery-title {
@@ -913,10 +1082,11 @@ body {
 /* ── Footer ── */
 .footer {
   text-align: center;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
-  line-height: 1.8;
-  max-width: 600px;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.6;
+  padding: 1rem 0 0.5rem;
+  width: 100%;
 }
 
 .footer a {

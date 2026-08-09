@@ -9,21 +9,13 @@
     Website: "🌐",
     "Press Release": "📋",
     Netflix: "🎬",
+    Facebook: "f",
   };
 
   let peekOrder = [];
   let currentIndex = 0;
   let timer = null;
-  const INTERVAL = 6000;
-
-  function shuffle(arr) {
-    const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
+  const INTERVAL = 7000;
 
   function buildThumb(peek) {
     if (peek.thumbnail) {
@@ -55,7 +47,7 @@
             </div>
             <h3 class="peek-title">${peek.title}</h3>
             <p class="peek-desc">${peek.description}</p>
-            <span class="peek-cta">View original post →</span>
+            <span class="peek-cta">Tap to view original post →</span>
             <span class="peek-source">via ${peek.source}</span>
           </div>
         </a>`;
@@ -64,7 +56,7 @@
       card.classList.add("peek-enter");
       void card.offsetWidth;
       card.classList.remove("peek-enter");
-    }, animate ? 300 : 0);
+    }, animate ? 280 : 0);
 
     updateDots();
     updateCounter();
@@ -105,19 +97,37 @@
     timer = setInterval(next, INTERVAL);
   }
 
+  function initSwipe() {
+    const wrap = document.querySelector(".peek-card-wrap");
+    if (!wrap) return;
+    let startX = 0;
+
+    wrap.addEventListener(
+      "touchstart",
+      (e) => {
+        startX = e.touches[0].clientX;
+      },
+      { passive: true }
+    );
+
+    wrap.addEventListener(
+      "touchend",
+      (e) => {
+        const diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 50) diff > 0 ? prev() : next();
+      },
+      { passive: true }
+    );
+  }
+
   function init() {
-    peekOrder = shuffle(SNEAK_PEEKS);
+    peekOrder = [...SNEAK_PEEKS];
     renderPeek(peekOrder[0], false);
     resetTimer();
+    initSwipe();
 
     document.getElementById("peek-prev")?.addEventListener("click", prev);
     document.getElementById("peek-next")?.addEventListener("click", next);
-    document.getElementById("peek-shuffle")?.addEventListener("click", () => {
-      peekOrder = shuffle(SNEAK_PEEKS);
-      currentIndex = 0;
-      renderPeek(peekOrder[0]);
-      resetTimer();
-    });
 
     document.getElementById("peek-dots")?.addEventListener("click", (e) => {
       const dot = e.target.closest(".peek-dot");
@@ -125,8 +135,8 @@
     });
 
     const card = document.getElementById("peek-card");
-    card?.addEventListener("mouseenter", () => clearInterval(timer));
-    card?.addEventListener("mouseleave", resetTimer);
+    card?.addEventListener("touchstart", () => clearInterval(timer), { passive: true });
+    card?.addEventListener("touchend", () => setTimeout(resetTimer, 3000), { passive: true });
   }
 
   if (document.readyState === "loading") {
