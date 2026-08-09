@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="description" content="Grand Theft Auto VI Countdown — unofficial fan app for the November 19, 2026 release." />
+  <meta name="theme-color" content="#0a0014" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="GTA VI Countdown" />
+  <title>Grand Theft Auto VI Countdown</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <div class="scene" id="scene">
+    <div class="parallax" id="parallax">
+      <div class="layer layer-sky" data-depth="0.02"><img src="assets/Miamis-synth-files/Layers/back.png" alt="" /></div>
+      <div class="layer layer-sun" data-depth="0.04"><img src="assets/Miamis-synth-files/Layers/sun.png" alt="" class="sun-glow" /></div>
+      <div class="layer layer-buildings" data-depth="0.12"><img src="assets/Miamis-synth-files/Layers/buildings.png" alt="" /></div>
+      <div class="layer layer-palms-back" data-depth="0.18"><img src="assets/Miamis-synth-files/Layers/palms.png" alt="" /></div>
+      <div class="layer layer-highway" data-depth="0.28"><img src="assets/Miamis-synth-files/Layers/highway.png" alt="" /></div>
+      <div class="layer layer-palm-front" data-depth="0.35"><img src="assets/Miamis-synth-files/Layers/palm-tree.png" alt="" /></div>
+    </div>
+    <div class="car-track" aria-hidden="true"><div class="car-sprite" id="car"></div></div>
+  </div>
+
+  <div class="install-hint" id="install-hint">
+    <p>📲 <strong>Add to Home Screen</strong> for the full app + countdown widget on your phone</p>
+    <button type="button" id="install-dismiss" aria-label="Dismiss">✕</button>
+  </div>
+
+  <div class="app-shell">
+    <!-- HOME -->
+    <section class="app-screen active" data-screen="home" aria-hidden="false">
+      <header class="hero">
+        <p class="tagline flicker">Welcome to Leonida</p>
+        <h1 class="title">
+          <span class="title-line title-grand">GRAND THEFT AUTO</span>
+          <span class="title-line title-vi"><span class="roman">VI</span></span>
+        </h1>
+        <p class="subtitle">November 19, 2026</p>
+      </header>
+
+      <section class="countdown" aria-label="Countdown to GTA VI release">
+        <div class="countdown-grid">
+          <div class="time-block"><div class="flip-card"><span class="flip-value" id="days">000</span></div><span class="time-label">Days</span></div>
+          <span class="separator">:</span>
+          <div class="time-block"><div class="flip-card"><span class="flip-value" id="hours">00</span></div><span class="time-label">Hours</span></div>
+          <span class="separator">:</span>
+          <div class="time-block"><div class="flip-card"><span class="flip-value" id="minutes">00</span></div><span class="time-label">Min</span></div>
+          <span class="separator">:</span>
+          <div class="time-block"><div class="flip-card"><span class="flip-value" id="seconds">00</span></div><span class="time-label">Sec</span></div>
+        </div>
+        <p class="release-date">PS5 &amp; Xbox Series X|S · Midnight Local</p>
+      </section>
+
+      <section class="stats">
+        <div class="stat-card"><span class="stat-icon">🌴</span><span class="stat-value" id="weeks">—</span><span class="stat-label">Weeks</span></div>
+        <div class="stat-card"><span class="stat-icon">🚗</span><span class="stat-value" id="progress">—</span><span class="stat-label">Hype</span></div>
+        <div class="stat-card"><span class="stat-icon">🌅</span><span class="stat-value" id="sunsets">—</span><span class="stat-label">Sunsets</span></div>
+      </section>
+
+      <button type="button" class="home-cta" data-goto="preorder">Pre-Order GTA VI →</button>
+    </section>
+
+    <!-- SNEAK PEEKS -->
+    <section class="app-screen" data-screen="peeks" aria-hidden="true">
+      <h2 class="screen-title">Sneak Peeks</h2>
+      <p class="screen-sub">Pre-orders · snapshots · official pages</p>
+      <div class="peek-carousel">
+        <button class="peek-nav peek-prev" id="peek-prev" aria-label="Previous">‹</button>
+        <div class="peek-card-wrap">
+          <div class="peek-card" id="peek-card"></div>
+          <div class="peek-controls">
+            <span class="peek-counter" id="peek-counter">1 / 12</span>
+            <div class="peek-dots" id="peek-dots"></div>
+          </div>
+        </div>
+        <button class="peek-nav peek-next" id="peek-next" aria-label="Next">›</button>
+      </div>
+      <p class="swipe-hint">Swipe left or right · Tap card to open post</p>
+    </section>
+
+    <!-- MODES -->
+    <section class="app-screen" data-screen="modes" aria-hidden="true">
+      <h2 class="screen-title">Game Modes</h2>
+      <p class="screen-sub">Confirmed editions &amp; features</p>
+      <div class="modes-grid" id="modes-grid"></div>
+    </section>
+
+    <!-- PRE-ORDER -->
+    <section class="app-screen" data-screen="preorder" aria-hidden="true">
+      <h2 class="screen-title">Pre-Order</h2>
+      <p class="screen-sub">Official stores · Nov 19, 2026 launch</p>
+      <div class="preorder-grid" id="preorder-grid"></div>
+      <p class="affiliate-disclaimer" id="affiliate-disclaimer" hidden></p>
+      <div class="preorder-bonus">
+        <h3>Pre-Order Bonus</h3>
+        <p>Vintage Vice City Pack — included with all purchases before November 20, 2026. Pre-load begins November 12.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="app-screen" data-screen="gallery" aria-hidden="true">
+      <h2 class="screen-title">Leonida Preview</h2>
+      <p class="screen-sub">Atmospheric artwork</p>
+      <div class="gallery-grid gallery-static">
+        <figure class="gallery-item">
+          <img src="assets/Miamis-synth-files/Previews/Miami-synth.png" alt="Vice City skyline" loading="lazy" draggable="false" />
+          <figcaption>Vice City skyline</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/Miamis-synth-files/Previews/Miami-synthx3.png" alt="Leonida highway" loading="lazy" draggable="false" />
+          <figcaption>Leonida highway</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/sunset-city.jpg" alt="Tropical dusk" loading="lazy" draggable="false" />
+          <figcaption>Tropical dusk</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="legal-banner">⚠️ Unofficial fan app · Not made by or affiliated with Rockstar Games, Take-Two Interactive, or any GTA trademark owner</p>
+      <p>Grand Theft Auto VI Countdown is a fan project for entertainment only.</p>
+    </footer>
+  </div>
+
+  <nav class="app-nav" aria-label="App navigation">
+    <button class="app-tab active" data-tab="home" aria-selected="true"><span class="tab-icon">⏱</span><span class="tab-label">Home</span></button>
+    <button class="app-tab" data-tab="peeks" aria-selected="false"><span class="tab-icon">👁</span><span class="tab-label">Peeks</span></button>
+    <button class="app-tab" data-tab="modes" aria-selected="false"><span class="tab-icon">🎮</span><span class="tab-label">Modes</span></button>
+    <button class="app-tab" data-tab="preorder" aria-selected="false"><span class="tab-icon">🛒</span><span class="tab-label">Order</span></button>
+    <button class="app-tab" data-tab="gallery" aria-selected="false"><span class="tab-icon">🌴</span><span class="tab-label">Art</span></button>
+  </nav>
+
+  <div class="wasted-overlay" id="wasted" aria-hidden="true"><span class="wasted-text">IT'S HERE</span></div>
+
+  <script src="js/content-data.js"></script>
+  <script src="js/affiliate-config.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/sneak-peeks.js"></script>
+  <script src="js/game-modes.js"></script>
+  <script src="js/app-nav.js"></script>
+  <script>
+    document.querySelectorAll("[data-goto]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tab = document.querySelector(`[data-tab="${btn.dataset.goto}"]`);
+        tab?.click();
+      });
+    });
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    }
+  </script>
+</body>
+</html>
