@@ -30,10 +30,14 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-body);
   color: #fff;
   background: var(--dark);
   overflow-x: hidden;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
 }
 
 /* ── Atmospheric overlays ── */
@@ -1087,6 +1091,17 @@ body {
   line-height: 1.6;
   padding: 1rem 0 0.5rem;
   width: 100%;
+}
+
+.legal-banner {
+  color: rgba(255, 200, 100, 0.85);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(255, 200, 100, 0.25);
+  border-radius: 8px;
+  background: rgba(255, 140, 0, 0.08);
 }
 
 .footer a {

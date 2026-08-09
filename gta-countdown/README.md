@@ -1,8 +1,8 @@
-# GTA VI Countdown App
+# Grand Theft Auto VI Countdown
 
-Mobile-first fan countdown to **Grand Theft Auto VI** (November 19, 2026).
+Unofficial fan countdown app for **Grand Theft Auto VI** (November 19, 2026).
 
-> Unofficial fan project — not affiliated with Rockstar Games or Take-Two Interactive.
+> **Not affiliated with Rockstar Games or Take-Two Interactive.** See [LEGAL.md](LEGAL.md) for trademark disclaimer.
 
 ## Features
 

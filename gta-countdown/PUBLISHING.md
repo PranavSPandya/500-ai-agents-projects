@@ -1,8 +1,8 @@
 # Publishing, Monetization & Affiliate Guide
 
-Complete guide for taking the GTA VI Countdown app to iOS, Google Play, earning from ads, and pre-order affiliate links.
+Complete guide for taking **Grand Theft Auto VI Countdown** to iOS, Google Play, earning from ads, and pre-order affiliate links.
 
-> **Important:** This is a **fan-made** app using Rockstar-adjacent branding. Both Apple and Google may reject apps that infringe trademarks or mislead users into thinking they are official. Use clear disclaimers, avoid Rockstar logos, and consider naming it something like **"VI Countdown — Leonida"** instead of "Grand Theft Auto VI Countdown" on stores.
+> **Legal:** This app uses the Grand Theft Auto name as an unofficial fan project. See [LEGAL.md](LEGAL.md) for trademark risks. App Store rejection is possible even with disclaimers.
 
 ---
 
