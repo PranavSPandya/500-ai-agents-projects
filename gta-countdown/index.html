@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Countdown to Grand Theft Auto VI — November 19, 2026. Vice City vibes, open-source art." />
+  <title>GTA VI Countdown — Leonida Awaits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <div class="scene">
+    <div class="parallax" id="parallax">
+      <div class="layer layer-sky" data-depth="0.02">
+        <img src="assets/Miamis-synth-files/Layers/back.png" alt="" />
+      </div>
+      <div class="layer layer-sun" data-depth="0.04">
+        <img src="assets/Miamis-synth-files/Layers/sun.png" alt="" class="sun-glow" />
+      </div>
+      <div class="layer layer-buildings" data-depth="0.12">
+        <img src="assets/Miamis-synth-files/Layers/buildings.png" alt="" />
+      </div>
+      <div class="layer layer-palms-back" data-depth="0.18">
+        <img src="assets/Miamis-synth-files/Layers/palms.png" alt="" />
+      </div>
+      <div class="layer layer-highway" data-depth="0.28">
+        <img src="assets/Miamis-synth-files/Layers/highway.png" alt="" />
+      </div>
+      <div class="layer layer-palm-front" data-depth="0.35">
+        <img src="assets/Miamis-synth-files/Layers/palm-tree.png" alt="" />
+      </div>
+    </div>
+
+    <div class="car-track" aria-hidden="true">
+      <div class="car-sprite" id="car"></div>
+    </div>
+  </div>
+
+  <main class="content">
+    <header class="hero">
+      <p class="tagline flicker">Welcome to Leonida</p>
+      <h1 class="title">
+        <span class="title-line title-grand">GRAND THEFT AUTO</span>
+        <span class="title-line title-vi">
+          <span class="roman">VI</span>
+        </span>
+      </h1>
+      <p class="subtitle">Vice City returns · November 19, 2026</p>
+    </header>
+
+    <section class="countdown" aria-label="Countdown to GTA VI release">
+      <div class="countdown-grid">
+        <div class="time-block">
+          <div class="flip-card">
+            <span class="flip-value" id="days">000</span>
+          </div>
+          <span class="time-label">Days</span>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="flip-card">
+            <span class="flip-value" id="hours">00</span>
+          </div>
+          <span class="time-label">Hours</span>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="flip-card">
+            <span class="flip-value" id="minutes">00</span>
+          </div>
+          <span class="time-label">Minutes</span>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="flip-card">
+            <span class="flip-value" id="seconds">00</span>
+          </div>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+      <p class="release-date" id="release-info">PS5 &amp; Xbox Series X|S · Midnight Local Time</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <span class="stat-icon">🌴</span>
+        <span class="stat-value" id="weeks">—</span>
+        <span class="stat-label">Weeks Left</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🚗</span>
+        <span class="stat-value" id="progress">—</span>
+        <span class="stat-label">Hype Meter</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🌅</span>
+        <span class="stat-value" id="sunsets">—</span>
+        <span class="stat-label">Vice City Sunsets</span>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <h2 class="gallery-title">Leonida Preview</h2>
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="assets/Miamis-synth-files/Previews/Miami-synth.png" alt="Miami synthwave cityscape at sunset" loading="lazy" />
+          <figcaption>Vice City skyline</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/Miamis-synth-files/Previews/Miami-synthx3.png" alt="Expanded Miami synthwave panorama" loading="lazy" />
+          <figcaption>Leonida highway</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets/sunset-city.jpg" alt="Palm trees silhouetted against a tropical sunset" loading="lazy" />
+          <figcaption>Tropical dusk</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Fan-made countdown · Not affiliated with Rockstar Games or Take-Two Interactive</p>
+      <p class="credits">
+        Art: <a href="https://opengameart.org/content/warped-miami-synth" target="_blank" rel="noopener">Warped Miami Synth</a> by Ansimuz ·
+        Photo: <a href="https://pixabay.com/photo/astronomy-1867616/" target="_blank" rel="noopener">Pixabay CC0</a>
+      </p>
+    </footer>
+  </main>
+
+  <div class="wasted-overlay" id="wasted" aria-hidden="true">
+    <span class="wasted-text">IT'S HERE</span>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

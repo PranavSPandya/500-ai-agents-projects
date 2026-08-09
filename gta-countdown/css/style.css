@@ -1,0 +1,534 @@
+/* GTA VI Countdown — Vice City neon aesthetic */
+
+:root {
+  --neon-pink: #ff2d95;
+  --neon-cyan: #00f0ff;
+  --neon-purple: #b537f2;
+  --neon-orange: #ff6b35;
+  --sunset-top: #1a0533;
+  --sunset-mid: #6b1a5c;
+  --sunset-bottom: #ff4e50;
+  --gold: #ffd700;
+  --dark: #0a0014;
+  --glass: rgba(10, 0, 20, 0.65);
+  --font-display: "Bebas Neue", sans-serif;
+  --font-digital: "Orbitron", monospace;
+  --font-body: "Rajdhani", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: #fff;
+  background: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── Atmospheric overlays ── */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Parallax scene ── */
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.parallax {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.layer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  max-width: none;
+  will-change: transform;
+}
+
+.layer img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.layer-sky {
+  bottom: auto;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.layer-sky img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sun-glow {
+  animation: sunPulse 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px var(--neon-orange)) drop-shadow(0 0 60px var(--neon-pink));
+}
+
+@keyframes sunPulse {
+  0%, 100% { filter: drop-shadow(0 0 30px var(--neon-orange)) drop-shadow(0 0 60px var(--neon-pink)); }
+  50% { filter: drop-shadow(0 0 50px var(--neon-orange)) drop-shadow(0 0 100px var(--neon-pink)); }
+}
+
+/* ── Animated car ── */
+.car-track {
+  position: fixed;
+  bottom: 12%;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.car-sprite {
+  position: absolute;
+  bottom: 0;
+  width: 80px;
+  height: 40px;
+  background-image: url("../assets/Miamis-synth-files/sprites/running/car-running1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 8px var(--neon-cyan));
+  animation: driveCar 12s linear infinite, carBounce 0.3s steps(5) infinite;
+}
+
+@keyframes driveCar {
+  0% { left: -10%; transform: scaleX(1); }
+  48% { left: 110%; transform: scaleX(1); }
+  50% { left: 110%; transform: scaleX(-1); }
+  98% { left: -10%; transform: scaleX(-1); }
+  100% { left: -10%; transform: scaleX(1); }
+}
+
+@keyframes carBounce {
+  0% { background-image: url("../assets/Miamis-synth-files/sprites/running/car-running1.png"); }
+  20% { background-image: url("../assets/Miamis-synth-files/sprites/running/car-running2.png"); }
+  40% { background-image: url("../assets/Miamis-synth-files/sprites/running/car-running3.png"); }
+  60% { background-image: url("../assets/Miamis-synth-files/sprites/running/car-running4.png"); }
+  80% { background-image: url("../assets/Miamis-synth-files/sprites/running/car-running5.png"); }
+}
+
+/* ── Main content ── */
+.content {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── Hero title ── */
+.hero {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.flicker {
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.6; }
+  97% { opacity: 1; }
+  98% { opacity: 0.4; }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.9;
+}
+
+.title-grand {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 5rem);
+  letter-spacing: 0.15em;
+  color: #fff;
+  text-shadow:
+    0 0 10px var(--neon-pink),
+    0 0 30px var(--neon-pink),
+    0 0 60px var(--neon-purple),
+    2px 2px 0 var(--neon-purple);
+}
+
+.title-vi {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 18vw, 12rem);
+  margin-top: -0.1em;
+}
+
+.roman {
+  background: linear-gradient(180deg, var(--gold) 0%, var(--neon-orange) 50%, var(--neon-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px var(--neon-orange)) drop-shadow(0 4px 0 var(--neon-purple));
+  animation: viGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes viGlow {
+  from { filter: drop-shadow(0 0 20px var(--neon-orange)) drop-shadow(0 4px 0 var(--neon-purple)); }
+  to { filter: drop-shadow(0 0 40px var(--neon-pink)) drop-shadow(0 4px 0 var(--neon-cyan)); }
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Countdown ── */
+.countdown {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.25rem, 2vw, 1rem);
+  flex-wrap: wrap;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flip-card {
+  background: var(--glass);
+  border: 2px solid var(--neon-pink);
+  border-radius: 8px;
+  padding: clamp(0.75rem, 3vw, 1.5rem) clamp(1rem, 4vw, 2rem);
+  box-shadow:
+    0 0 20px rgba(255, 45, 149, 0.3),
+    inset 0 0 30px rgba(255, 45, 149, 0.1);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+}
+
+.flip-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 45, 149, 0.3);
+}
+
+.flip-value {
+  font-family: var(--font-digital);
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 900;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 15px var(--neon-cyan);
+  letter-spacing: 0.05em;
+  transition: transform 0.15s ease;
+}
+
+.flip-value.tick {
+  animation: tickFlip 0.3s ease;
+}
+
+@keyframes tickFlip {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); opacity: 0.5; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.time-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--neon-pink);
+}
+
+.separator {
+  font-family: var(--font-digital);
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-weight: 900;
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--neon-pink);
+  animation: blinkSep 1s step-end infinite;
+  align-self: flex-start;
+  margin-top: clamp(0.75rem, 3vw, 1.5rem);
+}
+
+@keyframes blinkSep {
+  50% { opacity: 0; }
+}
+
+.release-date {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Stats ── */
+.stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 140px;
+  background: var(--glass);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.2);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-family: var(--font-digital);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* ── Gallery ── */
+.gallery {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 3rem;
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.2em;
+  text-align: center;
+  color: var(--neon-pink);
+  text-shadow: 0 0 15px var(--neon-pink);
+  margin-bottom: 1.5rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 45, 149, 0.4);
+  box-shadow: 0 0 20px rgba(255, 45, 149, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  image-rendering: auto;
+}
+
+.gallery-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem;
+  background: linear-gradient(transparent, rgba(10, 0, 20, 0.9));
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.footer a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ── Launch overlay ── */
+.wasted-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.wasted-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wasted-text {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 15vw, 8rem);
+  color: #c41e3a;
+  text-shadow:
+    0 0 20px #ff0000,
+    4px 4px 0 #000;
+  letter-spacing: 0.1em;
+  animation: wastedPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes wastedPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .separator {
+    display: none;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .car-sprite {
+    width: 50px;
+    height: 25px;
+  }
+
+  .car-track {
+    bottom: 8%;
+  }
+}
